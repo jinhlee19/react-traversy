@@ -5,13 +5,16 @@ function App() {
 	const x = false;
 	return (
 		<div className="container">
-		<header />
-			<h1>Helllo From React</h1>
+		<Header title='tracker'/> 
+		{/* 대문자 Header */}
+			{/* <h1>Helllo From React</h1>
 			<h2>Hello, {name}</h2>
 			<h3>{1 + 1}</h3>
-			<h4>{x ? 'yes' : 'no'}</h4>
+			<h4>{x ? 'yes' : 'no'}</h4> */}
 		</div>
 	);
 }
-
+Header.defaultProps = {
+	title: 'Task Tracker',
+}
 export default App;
