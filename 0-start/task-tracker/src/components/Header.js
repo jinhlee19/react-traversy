@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const Header = ({ title }) => {
 	return (
 		<header>
-			<h1>{title}</h1>
+			<h1 style={{ color: 'red', backgroundColor: 'black' }}>{title}</h1>
 		</header>
 	);
 };
@@ -18,5 +18,4 @@ Header.defaultProps = {
 Header.propTypes = {
 	title: PropTypes.string.isRequired,
 };
-// 대소문자 주의
 export default Header;

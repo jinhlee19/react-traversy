@@ -5,12 +5,7 @@ function App() {
 	const x = false;
 	return (
 		<div className="container">
-			<Header title={'1'} />
-			{/* 대문자 Header */}
-			{/* <h1>Helllo From React</h1>
-			<h2>Hello, {name}</h2>
-			<h3>{1 + 1}</h3>
-			<h4>{x ? 'yes' : 'no'}</h4> */}
+			<Header />
 		</div>
 	);
 }
