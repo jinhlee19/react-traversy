@@ -5,7 +5,7 @@ function App() {
 	const x = false;
 	return (
 		<div className="container">
-		<Header title='tracker'/> 
+		<Header /> 
 		{/* 대문자 Header */}
 			{/* <h1>Helllo From React</h1>
 			<h2>Hello, {name}</h2>
