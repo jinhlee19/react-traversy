@@ -9,7 +9,8 @@ const tasks = [
 // # 1 loop
 export const Tasks = () => {
 	return <>
-        {tasks.map((task)=>(<h3>{task.text}</h3>))}
+        {tasks.map((task)=>(<h3 key={task.id}>{task.text}</h3>))}
     </>
 };
 export default Tasks;
+// 영상 예제에서 나는 오류 'Each child in a list should have a unique "Key" Prop' 해결을 위해 12열 수정했지만 2.18 실행시 둘다 오류는 없음. 
