@@ -5,12 +5,13 @@ import { Button } from './Button';
 //rafce
 
 const Header = ({ title }) => {
+	const onClick = (e) => {
+        console.log(e)
+    }
 	return (
 		<header className="header">
 			<h1>{title}</h1>
-			<Button color="green" text="Hello" />
-			<Button color="blue" text="Hello 1" />
-			<Button color="red" text="Hello 3" />
+			<Button color="green" text="Add" onClick = {onClick} />
 		</header>
 	);
 };
@@ -20,10 +21,6 @@ Header.defaultProps = {
 Header.propTypes = {
 	title: PropTypes.string.isRequired,
 };
-// CSS in JS
-// dynamic styling 에서나 사용하는 부분.
-// const headingStyles = {
-// 	color: 'red', backgroundColor: 'black'
-// }
-//
+// component는 매번 다른 곳에서 사용될 수 있기 때문에, 원래 위치 Button.js가 아닌 prop으로 설정.
+
 export default Header;
