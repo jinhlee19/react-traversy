@@ -7,8 +7,9 @@ import PropTypes from 'prop-types';
 
 const Header = ({ title }) => {
 	return (
-		<header>
-			<h1 style={headingStyles}>{title}</h1>
+		<header className='header'>
+			<h1>{title}</h1>
+			<button className='btn'>Add</button>
 		</header>
 	);
 };
@@ -18,7 +19,10 @@ Header.defaultProps = {
 Header.propTypes = {
 	title: PropTypes.string.isRequired,
 };
-const headingStyles = {
-	color: 'red', backgroundColor: 'black'
-}
+// CSS in JS
+// dynamic styling 에서나 사용하는 부분. 
+// const headingStyles = {
+// 	color: 'red', backgroundColor: 'black'
+// }
+// 
 export default Header;
