@@ -1,5 +1,5 @@
 @font-face {
-	font-family: 'Suit';
+	font-family: 'SUIT';
 	font-weight: 100;
 	src: url('./assets/fonts/SUIT-Thin.woff2') format('woff2');
 }
@@ -49,11 +49,11 @@
 	src: url('./assets/fonts/SUIT-Heavy.woff2') format('woff2');
 }
 @font-face {
-	font-family: 'jalnan';
-	src: url('./assets/fonts/Jalnan.ttf') format('ttf');
+	font-family: 'Jalnan';
 	font-weight: normal;
-	font-style: normal;
+	src: url('./assets/fonts/Jalnan.ttf') format('truetype');
 }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
