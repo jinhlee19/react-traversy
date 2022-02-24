@@ -1,4 +1,4 @@
-const Card1 = ({ title, score, imgSrc }) => {
+const Card = ({ title, score, imgSrc, price }) => {
 	return (
 		<div className="max-w-screen-md mx-auto flex flex-col justify-center bg-gray-200">
 			<h1 className="text-3xl font-semibold uppercase">Title Test</h1>
@@ -28,7 +28,7 @@ const Card1 = ({ title, score, imgSrc }) => {
 							<span className="text-gray-500">Jessica</span>
 							<div className="card--price">
 								<span className="text-gray-400 line-through mr-4"> {'₩ 48,400'}</span>
-								<span className="text-gray-800 line-through"> {'₩ 48,400'}</span>
+								<span className="text-gray-800 line-through"> {price}</span>
 							</div>
 						</div>
 					</div>
@@ -38,4 +38,4 @@ const Card1 = ({ title, score, imgSrc }) => {
 	);
 };
 
-export default Card1;
+export default Card;
