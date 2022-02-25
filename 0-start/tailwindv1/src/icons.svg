@@ -1,0 +1,30 @@
+<svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<symbol id="icon-basic_clock" viewBox="0 0 32 32">
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M26.96 5.040c6.053 6.053 6.053 15.866 0 21.919-6.053 6.054-15.867 6.054-21.92 0-6.053-6.053-6.053-15.866 0-21.919s15.867-6.054 21.92 0z"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M16 6v10l4.5 4.5"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M2 16h2"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M28 16h2"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M16 30v-2"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M16 4v-2"></path>
+</symbol>
+<symbol id="icon-basic_heart" viewBox="0 0 32 32">
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M0.5 10.5c0 10 15.5 19 15.5 19s15.5-9 15.5-19c0-4.143-3-8-7.5-8-4.142 0-8 2.857-8 7 0-4.143-3.857-7-8-7-4.5 0-7.5 3.857-7.5 8z"></path>
+</symbol>
+<symbol id="icon-basic_lightbulb" viewBox="0 0 32 32">
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M10.5 20v2.5h11l0-2.553c3-1.849 5-5.165 5-8.947 0-5.799-4.701-10.5-10.5-10.5s-10.5 4.701-10.5 10.5c0 3.783 1.999 7.152 5 9z"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M14 22.5l-1.5-10"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M18 22.5l1.5-10"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M12.5 13l2 1.5 1.5-1.5 1.5 1.5 2-1.5"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M10.5 22.5h11v3h-11v-3z"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M11.5 25.5h9v3h-9v-3z"></path>
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M12.5 28.5h7v3h-7v-3z"></path>
+</symbol>
+<symbol id="icon-basic_star" viewBox="0 0 32 32">
+<path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="10" stroke-width="1" d="M16 23.5l-10 7.5 4-12-9-7h11l4-11.5 4 11.5h11l-9 7 4 12z"></path>
+</symbol>
+<symbol id="icon-quote" viewBox="0 0 20 20">
+<path d="M5.315 3.401c-1.61 0-2.916 1.343-2.916 3s1.306 3 2.916 3c2.915 0 0.972 5.799-2.916 5.799v1.4c6.939 0.001 9.658-13.199 2.916-13.199zM13.715 3.401c-1.609 0-2.915 1.343-2.915 3s1.306 3 2.915 3c2.916 0 0.973 5.799-2.915 5.799v1.4c6.938 0.001 9.657-13.199 2.915-13.199z"></path>
+</symbol>
+</defs>
+</svg>
