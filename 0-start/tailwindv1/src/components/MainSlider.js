@@ -18,10 +18,12 @@ export default function App() {
 			<Swiper
 				pagination={{
 					dynamicBullets: true,
+					progressbarFillClass: true,
 				}}
 				modules={[Pagination, Controller]}
 				className="mySwiper"
-				controller={{ control: controlledSwiper }}
+				controller={{ control: controlledSwiper }} 
+				
 			>
 				<SwiperSlide>Slide 1</SwiperSlide>
 				<SwiperSlide>Slide 2</SwiperSlide>
