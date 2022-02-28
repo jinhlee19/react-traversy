@@ -5,17 +5,17 @@ const Card = ({ classItem }) => {
 				<div className="bg-white">
 					<figure className="card__image overflow-hidden ">
 						<div
-							class="bg-cover bg-center h-[200px] w-[302px]  hover:scale-110 transition duration-300 ease-in-out"
+							className="bg-cover bg-center h-[200px] w-[302px]  hover:scale-110 transition duration-300 ease-in-out"
 							style={{
 								backgroundImage: `url(${classItem.imgSrc})`,
 							}}>
 						</div>
 					</figure>
 
-					<div className="card__content flex-col p-5">
+					<div className="card__content flex-col p-5 text-left">
 						<header className="mb-2">
 							<div className="block">
-								<h3 className="text-md text-gray-900">{classItem.title}</h3>
+								<h3 className="text-md  text-gray-900">{classItem.title}</h3>
 							</div>
 						</header>
 						<div className="text-xs text-gray-500">
@@ -30,8 +30,8 @@ const Card = ({ classItem }) => {
 
 							<span className="card--period">
 								<svg className="inline-block fill-current text-amber-400 w-4 h-4 stroke-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 38 38" width="32" height="32">
-									<path fill="none" stroke-miterlimit="10" stroke="#000" d="M26.96 5.04c6.053 6.053 6.053 15.866 0 21.919-6.053 6.054-15.867 6.054-21.92 0-6.053-6.053-6.053-15.866 0-21.919s15.867-6.054 21.92 0z" />
-									<path fill="none" stroke-miterlimit="10" stroke="#000" d="M16 6v10l4.5 4.5M2 16h2M28 16h2M16 30v-2M16 4V2" />
+									<path fill="none" strokeMiterlimit={'10'} stroke="#000" d="M26.96 5.04c6.053 6.053 6.053 15.866 0 21.919-6.053 6.054-15.867 6.054-21.92 0-6.053-6.053-6.053-15.866 0-21.919s15.867-6.054 21.92 0z" />
+									<path fill="none" strokeMiterlimit={'10'} stroke="#000" d="M16 6v10l4.5 4.5M2 16h2M28 16h2M16 30v-2M16 4V2" />
 								</svg>
 								{'43시간 (3개월)'}
 							</span>

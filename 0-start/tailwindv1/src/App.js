@@ -1,14 +1,15 @@
 import { useState } from 'react';
 
-import "swiper/css";
-import "swiper/css/pagination";
+import 'swiper/css';
+import 'swiper/css/pagination';
 // eslint-disable-next-line
-import "swiper/css/bundle";
-
+import 'swiper/css/bundle';
 
 import Cards from './components/Cards';
 import Searchbar from './components/Searchbar';
 import MainSlider from './components/MainSlider';
+import './styles/main.scss';
+
 function App() {
 	const [classes, setClasses] = useState([
 		{
@@ -93,10 +94,13 @@ function App() {
 		},
 	]);
 	return (
-		<div className="App max-w-screen-xl mx-auto">
+		<div className="App max-w-screen-xl mx-auto space-y-2 mt-10">
 			<MainSlider />
 			<Searchbar />
-			<h2 className="text-[24px] font-semibold">인기과목 특강</h2>
+			<h2 className="text-[24px] font-semibold text-left">
+				<span className="underline decoration-sky-500 text-[20px]">뉴비를 위한,</span>
+				 &nbsp;&nbsp;추천 클래스 모음
+			</h2>
 			<hr className="my-2" />
 			<div className="flex flex-row">
 				<Cards classes={classes} />
