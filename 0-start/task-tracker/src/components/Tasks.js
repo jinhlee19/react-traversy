@@ -1,14 +1,12 @@
 // rac
-//
 import Task from "./Task";
 
 // # 1 loop
-const Tasks = ({tasks, onDelete}) => {
-	
+const Tasks = ({tasks, onDelete, onToggle}) => {
 	return (
 		<>
 			{tasks.map(task => (
-				<Task key={task.id} task={task} onDelete = {()=> onDelete(task.id)} />
+				<Task key={task.id} task={task} onDelete = {()=> onDelete(task.id)} onToggle={onToggle}/>
 			))}
 		</>
 	);

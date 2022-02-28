@@ -11,12 +11,19 @@ const App = () => {
 	// Delete Task
 	const deleteTask = (id) => {
 		// console.log('delete', id)
+		// mutable state
+		// 하나씩 삭제 후 리스트 화면에 다시 보여준다. - 선택된 id를 제외한 아이템만 필터링.
 		setTasks(tasks.filter((task)=>task.id !==id))
 	}
+	// Toggle Reminder
+	const toggleReminder = (id) => {
+		console.log(id);
+	}
+
 	return (
 		<div className="container">
 			<Header />
-			{tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask}/> : 'No Tasks To Show'}
+			{tasks.length > 0 ? <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}/> : 'No Tasks To Show'}
 		</div>
 	);
 };

@@ -93,6 +93,7 @@ function App() {
 			instructor: '생물쌤',
 		},
 	]);
+	
 	return (
 		<div className="App max-w-screen-xl mx-auto space-y-2 mt-10">
 			<MainSlider />
