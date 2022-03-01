@@ -7,4 +7,5 @@ const router = express.Router();
 
 router.get('/', (req, res) => res.send('Auth Route'));
 
+// 라우터를 모듈로 만듬. export
 module.exports = router;
