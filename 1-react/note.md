@@ -45,3 +45,47 @@ server: nodemon server는 서버를 재시작할 필요 없이 server라는 파�
   "server": "nodemon server"
 },
 ```
+
+### 5 Postman
+
+get request to port 5000
+
+### 6 config/default.json
+
+create /config/default.json
+
+```json
+{
+    "mongoURI": "mongodb+srv://<username>:<password>@devconnector.
+    iixhl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
+```
+
+### 7
+
+/config/db.js
+
+```javascript
+const mongoose = require('mongoose');
+const config = require('config');
+const db = config.get('mongoURI');
+
+const connectDB = async () => {
+	try {
+		await mongoose.connect(db, { useNewUrlParser: true });
+		console.log('MongoDB Connected...');
+	} catch (err) {
+		console.log(err.message);
+		// Exit process with failure
+		process.exit(1);
+	}
+};
+console.log(db);
+module.exports = connectDB;
+```
+
+### 8
+
+create the files where we're going to create all of our roots and we want to break it up by resource so we'll have users auths profile and post.
+
+- separate files for all of our roots.
