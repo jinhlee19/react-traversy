@@ -179,3 +179,48 @@ module.exports = User = mongoose.model('user', UserSchema);
   - create a route that will register user
   - implement express validator - response to the correct user
   - validator - clean response
+
+```javascript
+// users.js
+const express = require('express');
+const router = express.Router();
+// @route   Post API/ Users
+// @desc    Register user
+// @access  Public
+router.get('/', (req, res) => res.send('User Route'));
+module.exports = router;
+```
+
+```javascript
+// users.js
+router.post('/', (req, res) => {
+	console.log(req.body);
+	res.send('User Route');
+});
+module.exports = router;
+/*
+1. need to send data to the route
+- name, email, pw to register
+- {}로 분리
+- console.log로 req.body
+- req.body를 실행하기 위해서 initialize middle-ware해야함
+*/
+```
+
+```javascript
+// @ server.js
+// Init Middleware (after connect DB)
+app.use(express.json({ extended: false }));
+```
+
+### 11.1.
+
+- Postman
+  - Post - http://localhost:5000/api/users
+    header
+    - key: content-type
+    - value- application/json
+  - Body
+    - `{"name": "rafy"}`
+
+### 11.2. EXPRESS VALIDATOR

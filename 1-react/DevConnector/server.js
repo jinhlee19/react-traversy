@@ -8,6 +8,7 @@ connectDB();
 
 //  Init Middleware
 app.use(express.json({ extended: false }));
+// querystring 모듈을 사용하여 쿼리스트링을 해석
 
 app.get('/', (req, res) => res.send('API Running'));
 
