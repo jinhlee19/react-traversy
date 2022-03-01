@@ -1,24 +1,24 @@
 # Note
 
-## 1
+## 1. Initiate
 
 ```shell
 npm init
 ```
 
-## 2
+## 2. Dependencies 설치
 
 ```shell
 npm i express express-validator bcryptjs config gravatar jsonwebtoken mongoose request
 ```
 
-## 3
+## 3. Dev Dependencies 설치
 
 ```shell
 npm i -D nodemon concurrently
 ```
 
-## 4
+## 4. server.js
 
 this will look for an environment variable called port to use and when we deploy to hiroku, that's where its going to get the port.
 
@@ -46,11 +46,11 @@ server: nodemon server는 서버를 재시작할 필요 없이 server라는 파�
 },
 ```
 
-## 5 Postman
+## 5. Postman에서 get request 넣기
 
 get request to port 5000
 
-## 6 config/default.json
+## 6.1. config/default.json
 
 create /config/default.json
 
@@ -61,7 +61,7 @@ create /config/default.json
 }
 ```
 
-## 7
+## 6.2. db.js
 
 /config/db.js
 
@@ -84,7 +84,9 @@ console.log(db);
 module.exports = connectDB;
 ```
 
-## 8 Routes \*\*\*
+## 7. Route Files with Express Router
+
+> Must REVIEW
 
 - create the files where we're going to create all of our roots and we want to break it up by resource so we'll have users auths profile and post.
 
@@ -96,7 +98,7 @@ module.exports = connectDB;
 
 - roots going to return JSON for our API
 
-## 8-1
+## 7.1.Route Files with Express Router
 
 주석 붙여넣기
 
@@ -108,7 +110,7 @@ module.exports = connectDB;
 
 @ acceess -> public and private - token으로 user를 인증해서 이동 허용하는 부분 \*\*
 
-### 예시 auth
+## 예시 auth
 
 ```javascript
 const express = require('express');
@@ -125,7 +127,7 @@ router.get('/', (req, res) => res.send('User Route'));
 module.exports = router;
 ```
 
-### 8-2
+## 8.2.
 
 /! At server.js
 
@@ -137,11 +139,11 @@ app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/posts', require('./routes/api/posts'));
 ```
 
-### 9 postman에서 Collection 만들기.
+## 9. postman에서 Collection 만들기.
 
 - User & Auth, Posts, Profiles
 
-### 10 schema
+## 10. schema
 
 ```javascript
 const mongoose = require('mongoose');
@@ -171,10 +173,9 @@ const UserSchema = new mongoose.Schema({
 module.exports = User = mongoose.model('user', UserSchema);
 ```
 
-## 11
+## 11.
 
-Goal
-
-- create a route that will register user
-- implement express validator - response to the correct user
-- validator - clean response
+- Goal
+  - create a route that will register user
+  - implement express validator - response to the correct user
+  - validator - clean response
