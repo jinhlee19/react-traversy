@@ -89,3 +89,17 @@ module.exports = connectDB;
 create the files where we're going to create all of our roots and we want to break it up by resource so we'll have users auths profile and post.
 
 - separate files for all of our roots.
+
+/routes/api/auth.js, posts,js, profile.js, users.js
+
+> creating a folder within here called API because there's no server rendered templates or anything in this case.
+
+- roots going to return JSON for our API
+
+```javascript
+// @route   Get API/ Users
+// @desc    Test Route
+// @access  Public
+```
+
+@ acceess -> public and private - token으로 user를 인증해서 이동 허용하는 부분 \*\*\*
