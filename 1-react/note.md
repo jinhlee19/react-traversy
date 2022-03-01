@@ -1,24 +1,24 @@
 # Note
 
-### 1.
+### 1
 
 ```shell
 npm init
 ```
 
-### 2.
+### 2
 
 ```shell
 npm i express express-validator bcryptjs config gravatar jsonwebtoken mongoose request
 ```
 
-### 3.
+### 3
 
 ```shell
 npm i -D nodemon concurrently
 ```
 
-### 4.
+### 4
 
 this will look for an environment variable called port to use and when we deploy to hiroku, that's where its going to get the port.
 
@@ -84,17 +84,19 @@ console.log(db);
 module.exports = connectDB;
 ```
 
-### 8
+### 8 Routes \*\*\*
 
-create the files where we're going to create all of our roots and we want to break it up by resource so we'll have users auths profile and post.
+- create the files where we're going to create all of our roots and we want to break it up by resource so we'll have users auths profile and post.
 
 - separate files for all of our roots.
 
-/routes/api/auth.js, posts,js, profile.js, users.js
+- /routes/api/auth.js, posts,js, profile.js, users.js
 
 > creating a folder within here called API because there's no server rendered templates or anything in this case.
 
 - roots going to return JSON for our API
+
+### 8-1
 
 ```javascript
 // @route   Get API/ Users
@@ -102,4 +104,20 @@ create the files where we're going to create all of our roots and we want to bre
 // @access  Public
 ```
 
-@ acceess -> public and private - token으로 user를 인증해서 이동 허용하는 부분 \*\*\*
+@ acceess -> public and private - token으로 user를 인증해서 이동 허용하는 부분 \*\*
+
+### 8-2
+
+/! At server.js
+
+```javascript
+// Define Routes
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
+app.use('/api/profile', require('./routes/api/profile'));
+app.use('/api/posts', require('./routes/api/posts'));
+```
+
+### 9 postman에서 Collection 만들기.
+
+- User & Auth, Posts, Profiles
