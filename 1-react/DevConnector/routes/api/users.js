@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 const { check, validationResult } = require('express-validator');
 
 // router.get('/')이면 / 주소로 [ GET요청 ]을 하는 것과 같다.
@@ -55,7 +57,19 @@ router.post(
 			await user.save();
 
 			// Return jsonwebtoken
-			res.send('User Registered.');
+			// res.send('User Registered.');
+			// payload - object - user:id
+			// mongodb의 _id -> mongoose에서 .id로 잡힌다
+			const payload = {
+				user: {
+					id: user.id,
+				}
+			};
+			// 3600 = 1hr
+			jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 360000 }, (err, token) => {
+				if (err) throw err;
+				res.json({ token });
+			});
 		} catch (err) {
 			console.error(err.message);
 			res.status(500).send('Server Error');
