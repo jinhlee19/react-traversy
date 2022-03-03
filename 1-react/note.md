@@ -259,3 +259,43 @@ router.post(
 Header - Payload
 payload - data to send
 iat - issued at - timestamp
+
+```javascript
+//
+const jwt = require('jsonwebtoken');
+
+...
+			// Return jsonwebtoken
+			// res.send('User Registered.');
+			// payload - object - user:id
+			// mongodb의 _id -> mongoose에서 .id로 잡힌다
+			const payload = {
+				user: {
+					id: user.id,
+				}
+			};
+			// 3600 = 1hr
+			jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 360000 }, (err, token) => {
+				if (err) throw err;
+				//else?
+				res.json({ token });
+			});
+			...
+```
+
+### Auth Middleware and JWT Verify
+
+//create /middleware/auth.js
+
+```javascript
+
+```
+
+todos
+
+- 보충하기
+- async await
+- middleware
+- server.js
+- process
+- users.js

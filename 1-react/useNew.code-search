@@ -1,0 +1,14 @@
+# Query: useNew
+# ContextLines: 1
+
+2개 결과 - 2 파일
+
+1-react/note.md:
+  74  	try {
+  75: 		await mongoose.connect(db, { useNewUrlParser: true });
+  76  		console.log('MongoDB Connected...');
+
+1-react/DevConnector/config/db.js:
+  7  	try {
+  8: 		await mongoose.connect(db, { useNewUrlParser: true });
+  9  		console.log('MongoDB Connected...');
