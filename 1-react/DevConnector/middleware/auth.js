@@ -1,6 +1,5 @@
 const jwt = require(`jsonwebtoken`);
-const config = require('');
-
+const config = require('config');
 
 module.exports = function (req, res, next) {
 	// Get token from hearder
@@ -38,7 +37,7 @@ token 받아오기
 객체를 요청 ( request object) 할 수 있다 -> 요청으로 객체의 헤더의 x-auth-token을 받아온다
 이부분 그냥 일단 암기. 'x-auth-token'
 
-9열 if no token -> res. (응답): 401 == not authorized
+9열 if no token -> res. (응답): 401 === not authorized
 14열 jwt.verify()메서드로 decode - token, config.get('jwtSecret')
 [https://velog.io/@neity16/NodeJS-JWT-Token-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0]
 [https://github.com/auth0/node-jsonwebtoken]
