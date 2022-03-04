@@ -46,13 +46,18 @@ router.post(
 			return res.status(400).json({ errors: errors.array() });
 		}
 		const { email, password } = req.body;
-		try {
+		try { 
 			// See if user exists
 			let user = await User.findOne({ email });
-			if (user) {
+			if (!user) {
 				return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
 			}
-            
+            // See if its matching - bcrypt 
+            const isMatch = await bcrypt.compare(password, user.password);
+            if(!isMatch) {
+                return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
+            }
+
             const payload = {
 				user: {
 					id: user.id,
