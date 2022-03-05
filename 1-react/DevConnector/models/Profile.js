@@ -7,9 +7,10 @@ const ProfileSchema = new Schema({
 		type: mongoose.Schema.Types.ObjectId, ref: 'user',
 		//user모델의 user의 _id(user모델 안에 보이지는 않지만 부여된 _id)와 연결. ref는 user 모델.
 	},
+  // ****** err ******
 	handle: {
 		type: String,
-		required: true,
+		required: false,
 		max: 40,
 	},
 	company: {
