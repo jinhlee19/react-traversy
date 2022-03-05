@@ -11,7 +11,7 @@ const User = require('../../models/Users');
 // @desc    Get current users profile
 // @access  Private
 
-router.get('/me', auth, async (req, res) => {
+router.get('/', auth, async (req, res) => {
 	try {
 		const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);
 		// Profile 모델의 user 필드의 ObjectId와 연결.
