@@ -74,10 +74,10 @@ router.post(
 		}
 		// Build social object
 		profileFields.social = {};
-		// if (youtube) profileFields.social.youtube = youtube;
+		if (youtube) profileFields.social.youtube = youtube;
 		if (twitter) profileFields.social.twitter = twitter;
 		if (facebook) profileFields.social.facebook = facebook;
-		// if (linkedin) profileFields.social.linkedin = linkedin;
+		if (linkedin) profileFields.social.linkedin = linkedin;
 		if (instagram) profileFields.social.instagram = instagram;
 		// * mongoose 메서드 사용시 항상 앞에 await 사용
 		try {
@@ -101,5 +101,5 @@ router.post(
 	}
 );
 module.exports = router;
-
 // 참고: mongoose populate - [https://www.zerocho.com/category/MongoDB/post/59a66f8372262500184b5363]
+
