@@ -11,8 +11,8 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 const Profile = require('../../models/Profile');
 
-// @route   Get API/ Auth
-// @desc    Test Route
+// @route   Get api/auth
+// @desc    Authenticate
 // @access  Public
 
 // 항상 middleware 사용시에는 second param으로 'auth,'추가해야한다고함. -> route를 protect
@@ -31,8 +31,8 @@ router.get('/', auth, async (req, res) => {
 
 // #2 USER AUTHENTICATION / LOGIN ROUTE
 
-// @route   Post API/ Auth
-// @desc    Authenicate user and Get token
+// @route   Post api/auth
+// @desc    Authenicate user and Get token ***
 // @access  Public
 
 router.post(
@@ -48,7 +48,9 @@ router.post(
 			// See if user exists
 			let user = await User.findOne({ email });
 			if (!user) {
-				return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
+				return res
+				.status(400)
+				.json({ errors: [{ msg: 'Invalid Credentials' }] });
 			}
 			// See if its matching - bcrypt
 			const isMatch = await bcrypt.compare(password, user.password);

@@ -26,8 +26,16 @@ module.exports = function (req, res, next) {
 여기서는)) 
 3) 돌려받은 토큰으로 보호된 라우트로 이동할 수 있는 권한을 받는다. 
 
+4열) middleware function이므로 인자 3개 포함. req,req 이후 callback 으로서의 next - 정리후 실행 할 다음 middleware?!
+
+
 5열)
 module.export 
+
+When we send a request to a protected route, we need to send the token within a header.
+const token = req.header('x-auth-token');
+401: not authorized 
+
 since its middleware function -> req,res,next 
 middleware function이란 req, res cycle 또는 객체에 접근해서 
 next는 callback으로 들어가서 req, res가 끝난 후 next piece of middleware로 이동할 수 있도록 해준다.

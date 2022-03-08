@@ -10,8 +10,8 @@ const { check, validationResult } = require('express-validator');
 // 이때, '/'는 server.js의 'api/users'에 해당된다.
 const User = require('../../models/Users');
 
-// @route   Post API/ Users
-// @desc    Register user
+// @route   Post api/users
+// @desc    Register user ***
 // @access  Public
 
 router.post(
@@ -34,7 +34,7 @@ router.post(
 			// See if user exists
 			let user = await User.findOne({ email });
 			if (user) {
-				return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+				return res.status(400).json({ errors: [{ msg: 'User already exists' }] }); // bad q
 			}
 			// Get users Gravatar
 			const avatar = gravatar.url(email, {
