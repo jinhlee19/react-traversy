@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
 // Create Schema
-const ProfileSchema = new Schema({
+const ProfileSchema = new mongoose.Schema({
+	// reference to user model.
+	// 모든 프로필은 유저와 관련되기 때문에..
 	user: {
 		type: mongoose.Schema.Types.ObjectId, ref: 'user',
-		//user모델의 user의 _id(user모델 안에 보이지는 않지만 부여된 _id)와 연결. ref는 user 모델.
+		//user모델의 user의 _id(user모델 안에 보이지는 않지만 부여된 _id)와 연결. ref는 user 모델전체. email, avatar, name들어가지만 pw는 미적용. auth.js에서의 user 관계??
 	},
 	handle: {
 		type: String,

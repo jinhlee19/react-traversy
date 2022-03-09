@@ -7,11 +7,11 @@ const { check, validationResult } = require('express-validator');
 const Profile = require('../../models/Profile');
 const User = require('../../models/Users');
 
-// @route   Get api/profile/me (endpoint)
+// @route   Get api/profile/me
 // @desc    Get current users profile
 // @access  Private
 
-router.get('/', auth, async (req, res) => {
+router.get('/me', auth, async (req, res) => {
 	try {
 		const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);
 		// Profile 모델의 user 필드의 ObjectId와 연결.
@@ -19,15 +19,15 @@ router.get('/', auth, async (req, res) => {
 			return res.status(400).json({ msg: 'There is no profile for this user' });
 		}
 		res.json(profile);
-	} catch (e) {
-		console.error(e.message);
+	} catch (err) {
+		console.error(err.message);
 		res.status(500).send('Server Error');
 	}
 });
 
 // @route   Post api/profile
 // @desc    Create or update user profile
-// @access  Private
+// @access  Private 
 
 // need to use Auth and devalidation Middle ware
 // router.post('/', (req,res)=> {})
@@ -41,7 +41,7 @@ router.post(
 		const errors = validationResult(req);
 		// validation not pass
 		if (!errors.isEmpty()) {
-			return res.status(400).son({ errors: errors.array() });
+			return res.status(400).json({ errors: errors.array() });
 		}
 		//validation passes
 		const {
@@ -83,6 +83,7 @@ router.post(
 		try {
 			let profile = await Profile.findOne({ user: req.user.id });
 			if (profile) {
+				// Update
 				profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true });
 				return res.json(profile);
 			}
@@ -90,17 +91,29 @@ router.post(
 			profile = new Profile(profileFields);
 			await profile.save();
 			res.json(profile);
-			
 		} catch (err) {
 			console.error(err.message);
 			res.status(500).send('server error');
 		}
-
-		console.log(profileFields.skills);
-		res.send(profileFields.skills);
 	}
 );
+
+// @route   Get api/profile
+// @desc    Get all profiles
+// @access  Public
+
+router.get('/', async (req,res)=>{
+	try {
+		const profiles = await Profile.find().populate('user', ['name','avatar']);
+		res.json(profiles);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
+	}
+});
+
+
+
 module.exports = router;
 // 참고: mongoose populate - [https://www.zerocho.com/category/MongoDB/post/59a66f8372262500184b5363]
-
 // err - 5:00 without setting token????

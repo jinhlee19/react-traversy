@@ -57,7 +57,7 @@ router.post(
 			if (!isMatch) {
 				return res.status(400).json({ errors: [{ msg: 'Invalid Credentials' }] });
 			}
-
+			// JWT 
 			const payload = {
 				user: {
 					id: user.id,
