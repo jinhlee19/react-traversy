@@ -98,6 +98,20 @@ router.post(
 	}
 );
 
+// @route   Get api/profile/
+// @desc    Get all profiles
+// @access  Public
+
+router.get('/', async (req,res)=>{
+	try {
+		const profiles = await Profile.find().populate('user', ['name','avatar']);
+		res.json(profiles);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
+	}
+});
+
 // @route   Get api/profile/user/:user_id
 // @desc    Get profiles by user ID
 // @access  Public
@@ -118,5 +132,24 @@ router.get('/user/:user_id', auth, async (req, res) => {
 	}
 });
 
+// @route   DELETE api/profile/
+// @desc    Delete profiles, user & posts
+// @access  Private
 
+router.delete('/', auth, async (req,res)=>{
+	try {
+		// @todo - remove users posts
+		
+		// Remove Profile
+		await Profile.findOneAndRemove({user: req.user.id});
+		// since its private we need to access to the token, which we actually have to add in here the auth middleware.
+
+		// Remove User
+		await User.findOneAndRemove({_id: req.user.id});
+		res.json({msg: 'User deleted.'});
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
+	}
+});
 module.exports = router;
