@@ -13,7 +13,7 @@ const User = require('../../models/Users');
 
 router.get('/me', auth, async (req, res) => {
 	try {
-		const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);
+		const profile = await Profile.findOne({ user: req.user_id }).populate('user', ['name', 'avatar']);
 		// Profile 모델의 user 필드의 ObjectId와 연결.
 		if (!profile) {
 			return res.status(400).json({ msg: 'There is no profile for this user' });
@@ -102,10 +102,27 @@ router.post(
 // @desc    Get all profiles
 // @access  Public
 
-router.get('/', async (req,res)=>{
+// router.get('/', async (req,res)=>{
+// 	try {
+// 		const profiles = await Profile.find().populate('user', ['name','avatar']);
+// 		res.json(profiles);
+// 	} catch (err) {
+// 		console.error(err.message);
+// 		res.status(500).send('Server Error');
+// 	}
+// });
+
+// @route   Get api/profile/user/:user_id
+// @desc    Get profiles by user ID
+// @access  Public
+
+router.get('/user/:user_id', auth, async (req, res) => {
 	try {
-		const profiles = await Profile.find().populate('user', ['name','avatar']);
-		res.json(profiles);
+		const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'avatar']);
+		if (!profile) {
+			return res.status(400).json({ msg: 'There is no profile for this user' });
+		}
+		res.json(profile);
 	} catch (err) {
 		console.error(err.message);
 		res.status(500).send('Server Error');
@@ -113,7 +130,6 @@ router.get('/', async (req,res)=>{
 });
 
 
-
 module.exports = router;
 // 참고: mongoose populate - [https://www.zerocho.com/category/MongoDB/post/59a66f8372262500184b5363]
-// err - 5:00 without setting token????
+// err - 5:00 without setting token???? - 첫번째 get의 /me 부분이랑 두번째 typo err: profile-> profiles 해결.
