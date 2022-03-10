@@ -275,13 +275,14 @@ router.get('/github/:username', (req, res) => {
 				'githubSecret'
 			)}`,
 			method: 'GET',
-			headers: {'user-agent': 'node.js'},
+			headers: { 'user-agent': 'node.js' },
 		};
 		request(options, (error, response, body) => {
 			if (error) console.error(error);
 			if (response.statusCode !== 200) {
 				return res.status(404).json({
-					msg: 'No Github Profile Found'});
+					msg: 'No Github Profile Found',
+				});
 			}
 			res.json(JSON.parse(body));
 		});
