@@ -72,9 +72,8 @@ const ProfileSchema = new mongoose.Schema({
 			},
 			degree: {
 				type: String,
-				required: true,
 			},
-			fieldofstudy: {
+			major: {
 				type: String,
 				required: true,
 			},
