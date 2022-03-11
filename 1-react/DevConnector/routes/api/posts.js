@@ -11,6 +11,7 @@ const profile = require('../../models/Profile');
 const user = require('../../models/Users');
 const Post = require('../../models/Post');
 
+//// ADD POST ROUTE
 // @route   Post api/posts
 // @desc    Test Route
 // @access  Public
@@ -38,13 +39,14 @@ router.post('/', [auth], [check('text', 'Text is required').not().isEmpty()], as
 	}
 });
 
+//// GET ALL POSTS
 // @route   GET api/posts
 // @desc    Get All Post
 // @access  Private
 
-router.get('/', auth, async(req,res) => {
+router.get('/', auth, async (req, res) => {
 	try {
-		const posts=await Post.find().sort({date: -1});
+		const posts = await Post.find().sort({ date: -1 });
 		// date:-1 :: most recent first
 		res.json(posts);
 	} catch (err) {
@@ -53,53 +55,100 @@ router.get('/', auth, async(req,res) => {
 	}
 });
 
+//// GET POSTS BY ID
 // @route   GET api/posts/:id
 // @desc    Get Post by ID
 // @access  Private
 
-router.get('/:id', auth, async(req,res) => {
+router.get('/:id', auth, async (req, res) => {
 	try {
 		const posts = await Post.findById(req.params.id);
-		if(!post){
-			return res.status(404).json({msg:'Post not found'});
+		if (!post) {
+			return res.status(404).json({ msg: 'Post not found' });
 		}
 		// date:-1 :: most recent first
 		res.json(posts);
 	} catch (err) {
 		console.error(err.message);
-		if(err.kind === 'ObjectId'){
-			return res.status(404).json({msg:'Post not found'});
+		if (err.kind === 'ObjectId') {
+			return res.status(404).json({ msg: 'Post not found' });
 		}
 		res.status(500).send('Server Error');
 	}
 });
 
+//// DELETE A POST
 // @route   DELETE api/posts/:id
 // @desc    Delete a Post
 // @access  Private
 
-router.delete('/:id', auth, async(req,res) => {
+router.delete('/:id', auth, async (req, res) => {
 	try {
-		const post =await Post.findById(req.params.id);
+		const post = await Post.findById(req.params.id);
 		//If post doesn't exist
-		if(!post){
-			return res.status(404).json({msg:'Post not found'});
+		if (!post) {
+			return res.status(404).json({ msg: 'Post not found' });
 		}
 		// date:-1 :: most recent first
 		// Check User
-		if(post.user.toString() !== req.user.id){
-			return res.status(401).json({msg: 'User not authorized'});
+		if (post.user.toString() !== req.user.id) {
+			return res.status(401).json({ msg: 'User not authorized' });
 		}
 		await post.remove();
-		res.json({msg: 'Post removed'});
+		res.json({ msg: 'Post removed' });
 	} catch (err) {
 		console.error(err.message);
-		if(err.kind === 'ObjectId'){
-			return res.status(404).json({msg:'Post not found'});
+		if (err.kind === 'ObjectId') {
+			return res.status(404).json({ msg: 'Post not found' });
 		}
 		res.status(500).send('Server Error');
 	}
 });
 
+//// Like
+// @route   PUT api/posts/like/:id
+// @desc    Like a Post
+// @access  Private
+
+router.put('/like/:id', auth, async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.id);
+		// Check if the Post has already been liked.
+		if (post.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+			return res.status(400).json({msg: 'Post already liked.'});
+		}
+		post.likes.unshift({user: req.user.id});
+		await post.save();
+		// *** 1- filter throw 'likes array', 2 - need to stringify user, 3 - length>0 already been liked
+		res.json(post.likes);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
+	}
+});
+
+//// Unlike
+// @route   PUT api/posts/unlike/:id
+// @desc    Unlike a Post
+// @access  Private
+
+router.put('/unlike/:id', auth, async (req, res) => {
+	try {
+		const post = await Post.findById(req.params.id);
+		// Check if the Post has already been liked.
+		if (post.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
+			return res.status(400).json({msg: 'Post has not yet been liked.'});
+		}
+		// Get remove index
+		const removeIndex = post.likes.map(like => like.user.toString()).indexOf(req.user.id);
+		post.likes.splice(removeIndex,1);
+		await post.save();
+		// *** 1- filter throw 'likes array', 2 - need to stringify user, 3 - length>0 already been liked
+		res.json(post.likes);
+	} catch (err) {
+		console.error(err.message);
+		res.status(500).send('Server Error');
+	}
+});
 
 module.exports = router;
