@@ -1,4 +1,4 @@
-// racfe로 생성. (강의에서 racf라고 하지만 racfe의 결과물이 나옴.)
+import React from 'react'
 
 const Landing = () => {
   return (
