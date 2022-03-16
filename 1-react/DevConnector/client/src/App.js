@@ -10,7 +10,8 @@ import './App.css';
 // import store from './store';
 
 const App = () => (
-		<BrowserRouter>
+	
+	<BrowserRouter>
 			<Fragment>
 				<Navbar />
 				<Routes>
@@ -20,6 +21,8 @@ const App = () => (
 				</Routes>
 			</Fragment>
 		</BrowserRouter>
+	
+		
 );
 
 export default App;
