@@ -9,7 +9,11 @@ import './App.css';
 // import { Provider } from 'react-redux';
 // import store from './store';
 
+// <Provider store={store}>
+//</Provider>
+
 const App = () => (
+
 	
 	<BrowserRouter>
 			<Fragment>
@@ -21,7 +25,7 @@ const App = () => (
 				</Routes>
 			</Fragment>
 		</BrowserRouter>
-	
+		
 		
 );
 
