@@ -17,7 +17,10 @@ const User = require('../../models/Users');
 
 router.get('/me', auth, async (req, res) => {
 	try {
-		const profile = await Profile.findOne({ user: req.user_id }).populate('user', ['name', 'avatar']);
+		const profile = await Profile.findOne({ user: req.user_id }).populate(
+			'user',
+			['name', 'avatar']
+		);
 		// Profile 모델의 user 필드의 ObjectId와 연결.
 		if (!profile) {
 			return res.status(400).json({ msg: 'There is no profile for this user' });
@@ -39,7 +42,10 @@ router.post(
 	'/',
 	[
 		auth,
-		[check('status', 'Status is required').not().isEmpty(), check('skills', 'Skills is required').not().isEmpty()],
+		[
+			check('status', 'Status is required').not().isEmpty(),
+			check('skills', 'Skills is required').not().isEmpty(),
+		],
 	],
 	async (req, res) => {
 		const errors = validationResult(req);
@@ -88,7 +94,11 @@ router.post(
 			let profile = await Profile.findOne({ user: req.user.id });
 			if (profile) {
 				// Update
-				profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true });
+				profile = await Profile.findOneAndUpdate(
+					{ user: req.user.id },
+					{ $set: profileFields },
+					{ new: true }
+				);
 				return res.json(profile);
 			}
 			// Create
@@ -122,7 +132,9 @@ router.get('/', async (req, res) => {
 
 router.get('/user/:user_id', auth, async (req, res) => {
 	try {
-		const profile = await Profile.findOne({ user: req.params.user_id }).populate('user', ['name', 'avatar']);
+		const profile = await Profile.findOne({
+			user: req.params.user_id,
+		}).populate('user', ['name', 'avatar']);
 		if (!profile) {
 			return res.status(400).json({ msg: 'There is no profile for this user' });
 		}
@@ -175,7 +187,8 @@ router.put(
 		if (!error.isEmpty()) {
 			return res.status(400).json({ errors: error.array() });
 		}
-		const { title, company, location, from, to, current, description } = req.body;
+		const { title, company, location, from, to, current, description } =
+			req.body;
 		const newExp = { title, company, location, from, to, current, description };
 		try {
 			const profile = await Profile.findOne({ user: req.user.id });
@@ -198,7 +211,9 @@ router.put(
 router.delete('/experience/:exp_id', auth, async (req, res) => {
 	try {
 		const profile = await Profile.findOne({ user: req.user.id });
-		const removeIndex = profile.experience.map(item => item.id).indexOf(req.params.exp_id);
+		const removeIndex = profile.experience
+			.map(item => item.id)
+			.indexOf(req.params.exp_id);
 		profile.experience.splice(removeIndex, 1);
 		await profile.save();
 		res.json(profile);
@@ -251,7 +266,9 @@ router.put(
 router.delete('/education/:exp_id', auth, async (req, res) => {
 	try {
 		const profile = await Profile.findOne({ user: req.user.id });
-		const removeIndex = profile.education.map(item => item.id).indexOf(req.params.exp_id);
+		const removeIndex = profile.education
+			.map(item => item.id)
+			.indexOf(req.params.exp_id);
 		profile.education.splice(removeIndex, 1);
 		await profile.save();
 		res.json(profile);
@@ -271,9 +288,9 @@ router.get('/github/:username', (req, res) => {
 		const options = {
 			uri: `https://api.github.com/users/${
 				req.params.username
-			}/repos?per_page=5&sort=created:asc&client_id=${config.get('githubClientId')}&client_secret=${config.get(
-				'githubSecret'
-			)}`,
+			}/repos?per_page=5&sort=created:asc&client_id=${config.get(
+				'githubClientId'
+			)}&client_secret=${config.get('githubSecret')}`,
 			method: 'GET',
 			headers: { 'user-agent': 'node.js' },
 		};

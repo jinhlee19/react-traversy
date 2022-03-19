@@ -19,7 +19,10 @@ router.post(
 	[
 		check('name', 'Name is required').not().isEmpty(),
 		check('email', 'please include a valid email').isEmail(),
-		check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
+		check(
+			'password',
+			'Please enter a password with 6 or more characters'
+		).isLength({ min: 6 }),
 	],
 	async (req, res) => {
 		// console.log(req.body);
@@ -34,7 +37,9 @@ router.post(
 			// See if user exists
 			let user = await User.findOne({ email });
 			if (user) {
-				return res.status(400).json({ errors: [{ msg: 'User already exists' }] }); // bad q
+				return res
+					.status(400)
+					.json({ errors: [{ msg: 'User already exists' }] }); // bad q
 			}
 			// Get users Gravatar
 			const avatar = gravatar.url(email, {
@@ -63,14 +68,19 @@ router.post(
 			const payload = {
 				user: {
 					id: user.id,
-				}
+				},
 			};
 			// 3600 = 1hr
-			jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 360000 }, (err, token) => {
-				if (err) throw err;
-				//else?
-				res.json({ token });
-			});
+			jwt.sign(
+				payload,
+				config.get('jwtSecret'),
+				{ expiresIn: 360000 },
+				(err, token) => {
+					if (err) throw err;
+					//else?
+					res.json({ token });
+				}
+			);
 		} catch (err) {
 			console.error(err.message);
 			res.status(500).send('Server Error');

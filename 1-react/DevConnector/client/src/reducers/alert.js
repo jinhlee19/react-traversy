@@ -1,4 +1,4 @@
-// const {SET_ALERT, REMOVE_ALERT} from '../actions/types';
+// const {SET_ALERT, REMOVE_ALERT} from './types';
 // const initialState = [];
 
 // export default function(state = initialState, action){
