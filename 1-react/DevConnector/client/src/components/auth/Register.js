@@ -39,16 +39,12 @@ const Register = () => {
 		e.preventDefault();
 	};
 	return (
-		<Fragment>
+		<section className="container">
 			<h1 className="large text-primary">Sign Up</h1>
 			<p className="lead">
 				<i className="fas fa-user"></i> Create Your Account
 			</p>
-			<form
-				className="form"
-				action="#"
-				onSubmit={e => onSubmit(e)}
-			>
+			<form className="form" action="#" onSubmit={e => onSubmit(e)}>
 				<div className="form-group">
 					<input
 						type="text"
@@ -100,7 +96,7 @@ const Register = () => {
 			<p className="my-1">
 				Already have an account? <Link to="/login">Sign In</Link>
 			</p>
-		</Fragment>
+		</section>
 	);
 };
 export default Register;

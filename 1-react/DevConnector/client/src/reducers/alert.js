@@ -5,5 +5,5 @@
 //     switch(action.type){
 //         case 'SET_ALERT':
 //             return [...state, action.payload]
-// }
+//     }
 // }
