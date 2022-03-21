@@ -1,24 +1,28 @@
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import axios from 'axios';
+// import axios from 'axios'; // Redux 적용 전  테트
 
 const Register = () => {
+	// INITIAL STATE -> useState(초기값)
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
 		password: '',
-		password2: '',
+		password2: '', 
 	});
+	// DESTRUCTURE - Pull data from Form Data
 	const { name, email, password, password2 } = formData;
 	const onChange = e =>
 		setFormData({ ...formData, [e.target.name]: e.target.value });
 	const onSubmit = async e => {
+		// 이때 이 password는 14열에서 받아와서 어디서든 사용할 수 있다.
 		if (password !== password2) {
 			console.log('Passwords do not match');
 		} else {
-			// // console.log(formData);
+			// //// WITHOUT REDUX 
 			// // *** Req Example
 			// const newUser = { name, email, password };
+			// console.log(formData);
 			// try {
 			// 	const config = {
 			// 		headers: {
@@ -101,3 +105,11 @@ const Register = () => {
 };
 export default Register;
 
+/*
+const [formData, setFormData] = useState({ email: '', password: '' }); 
+에서 formData 는 폼에 있는 모든 필드값에 대한 객체. 
+setFormData({ ...formData, [e.target.name]: e.target.value });
+setFormDate 는 데이터 업데이트를 위해 사용되는 함수  
+	...formData 여태까지의 formData 다음에 아래와같은 새로운 키와 value를 추가
+	[e.target.name]: e.target.value 
+*/

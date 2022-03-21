@@ -5,14 +5,6 @@ const Login = () => {
 	const { email, password } = formData;
 	const onChange = e =>
 		setFormData({ ...formData, [e.target.name]: e.target.value });
-		/*
-		const [formData, setFormData] = useState({ email: '', password: '' }); 
-		에서 formData 는 폼에 있는 모든 필드값에 대한 객체. 
-		setFormData({ ...formData, [e.target.name]: e.target.value });
-		setFormDate 는 데이터 업데이트를 위해 사용되는 함수  
-		 ...formData 여태까지의 formData 다음에 아래와같은 새로운 키와 value를 추가
-		 [e.target.name]: e.target.value 
-		 */
 	const onSubmit = async e => {
 		console.log('success');
 		e.preventDefault();
