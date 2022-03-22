@@ -77,3 +77,50 @@ export default combineReducers({
 	// 여기에 reducers 추가
 });
 ```
+
+# 8. Alert Reducer, Action and Types
+
+[PROCESS]
+
+- 액션을 넣는다 - 이런 형태의 객체의 배열 array of object.
+
+  1. ‘alert.js’라는 reducer를 생성
+  2. 그 안에 들어가는 {}이하의 부분이 action
+  3. action 안에는 필수값으로 type과 payload를 포함.
+
+[REMIND]
+
+- reducer는 단순히 액션을 담는 함수다. 그리고 액션을 보낸다(dispatch).
+- reducer는 변경이 필요한 컴포넌트의 상태값 업데이트를 결정한다
+
+## 8.1. Add ‘Alert’ to Root Reducer
+
+```javascript
+import { combineReducers } from 'redux';
+import alert from './alert';
+export default combineReducers({
+	alert,
+});
+```
+
+## 8.2. reducer/alert.js
+
+```javascript
+import { SET_ALERT, REMOVE_ALERT } from '../actions/types';
+
+const initialState = [];
+
+// eslint-disable-next-line import/no-anonymous-default-export
+export default function (state = initialState, action) {
+	const { type, payload } = action;
+
+	switch (type) {
+		case SET_ALERT:
+			return [...state, payload];
+		case REMOVE_ALERT:
+			return state.filter(alert => alert.id !== payload);
+		default:
+			return state;
+	}
+}
+```
