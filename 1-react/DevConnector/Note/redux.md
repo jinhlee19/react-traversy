@@ -86,7 +86,7 @@ export default combineReducers({
 
   1. ‘alert.js’라는 reducer를 생성
   2. 그 안에 들어가는 {}이하의 부분이 action
-  3. action 안에는 필수값으로 type과 payload를 포함.
+  3. action 안에는 필수값으로 type, 선택적으로 payload(data)를 포함.
 
 [REMIND]
 
