@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+// impt
+import PropTypes from 'prop-types'
 // import axios from 'axios'; // Redux 적용 전  테트
 
-const Register = props => {
+const Register = ({ setAlert }) => {
 	// INITIAL STATE -> useState(초기값)
 	const [formData, setFormData] = useState({
 		name: '',
@@ -19,7 +21,7 @@ const Register = props => {
 	const onSubmit = async e => {
 		// 이때 이 password는 14열에서 받아와서 어디서든 사용할 수 있다.
 		if (password !== password2) {
-			props.setAlert('Passwords do not match', 'danger');
+			setAlert('Passwords do not match', 'danger');
 		} else {
 			// //// WITHOUT REDUX
 			// // *** Req Example
@@ -105,6 +107,10 @@ const Register = props => {
 		</section>
 	);
 };
+Register.propTypes = {
+	// ptfr
+	setAlert: PropTypes.func.isRequired
+}
 export default connect(null, { setAlert })(Register);
 
 /*
