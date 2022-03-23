@@ -1,14 +1,16 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { setAlert } from '../../actions/alert';
 // import axios from 'axios'; // Redux 적용 전  테트
 
-const Register = () => {
+const Register = props => {
 	// INITIAL STATE -> useState(초기값)
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
 		password: '',
-		password2: '', 
+		password2: '',
 	});
 	// DESTRUCTURE - Pull data from Form Data
 	const { name, email, password, password2 } = formData;
@@ -19,7 +21,7 @@ const Register = () => {
 		if (password !== password2) {
 			console.log('Passwords do not match');
 		} else {
-			// //// WITHOUT REDUX 
+			// //// WITHOUT REDUX
 			// // *** Req Example
 			// const newUser = { name, email, password };
 			// console.log(formData);
@@ -103,7 +105,7 @@ const Register = () => {
 		</section>
 	);
 };
-export default Register;
+export default connect(null, { setAlert })(Register);
 
 /*
 const [formData, setFormData] = useState({ email: '', password: '' }); 

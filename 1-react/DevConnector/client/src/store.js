@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware } from 'redux';
-// middleware - Thunk를 불러오기위해 applyMiddleware 포함. 
+// middleware - Thunk를 불러오기위해 applyMiddleware 포함.
 import { composeWithDevTools } from 'redux-devtools-extension';
 // middleware thunk
 import thunk from 'redux-thunk';
@@ -15,7 +15,7 @@ const middleware = [thunk];
 const store = createStore(
 	rootReducer,
 	initialState,
-	composeWithDevTools(applyMiddleware(...middleware)) 
+	composeWithDevTools(applyMiddleware(...middleware))
 );
 
 export default store;
