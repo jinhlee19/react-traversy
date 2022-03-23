@@ -19,7 +19,7 @@ const Register = props => {
 	const onSubmit = async e => {
 		// 이때 이 password는 14열에서 받아와서 어디서든 사용할 수 있다.
 		if (password !== password2) {
-			console.log('Passwords do not match');
+			props.setAlert('Passwords do not match', 'danger');
 		} else {
 			// //// WITHOUT REDUX
 			// // *** Req Example
