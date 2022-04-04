@@ -1,4 +1,4 @@
-// REDUCER ALERT
+// REDUCER ALERT - src/reducers/alert.js
 
 import { SET_ALERT, REMOVE_ALERT } from '../actions/types';
 

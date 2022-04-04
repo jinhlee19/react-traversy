@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 // Router v6 updated -> brad 버전 github 참고 ***
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
@@ -18,7 +18,6 @@ const App = () => (
 			<Navbar />
 			<Alert />
 			<Routes>
-
 				<Route path="/" element={<Landing />} />
 				<Route path="/register" element={<Register />} />
 				<Route path="/login" element={<Login />} />
