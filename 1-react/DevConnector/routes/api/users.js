@@ -60,9 +60,9 @@ router.post(
 			const salt = await bcrypt.genSalt(10);
 			user.password = await bcrypt.hash(password, salt);
 			await user.save();
+			res.send('User Registered.');
 
 			// Return jsonwebtoken
-			// res.send('User Registered.');
 			// payload - object - user:id
 			// mongodb의 _id -> mongoose에서 .id로 잡힌다
 			const payload = {
