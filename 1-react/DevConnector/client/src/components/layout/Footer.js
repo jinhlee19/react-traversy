@@ -1,13 +1,11 @@
-import {React} from 'react'
+import { React } from 'react';
 
 const Footer = () => {
-  return (
-    <Footer>
-        <div className='footer'>
-            <h1> Footer 넣을자리</h1>
-        </div>
-    </Footer>
-  )
-}
+	return (
+		<footer className="footer">
+		사용안하는중
+		</footer>
+	);
+};
 
-export default Footer
+export default Footer;
