@@ -9,6 +9,7 @@ export default function (state = initialState, action) {
 		case SET_ALERT:
 			return [...state, payload];
 		case REMOVE_ALERT:
+			//요부분 이해가 안감.
 			return state.filter(alert => alert.id !== payload);
 		default:
 			return state;

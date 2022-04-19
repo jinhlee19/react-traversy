@@ -3,19 +3,16 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
-// impt
+// snipet -> impt 
 import PropTypes from 'prop-types';
 
 const Register = ({ setAlert }) => {
-	// const Register = () => {
-	// INITIAL STATE -> useState(초기값)
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
 		password: '',
 		password2: '',
 	});
-	// DESTRUCTURE - Pull data from Form Data
 	const { name, email, password, password2 } = formData;
 	const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 	// 여기서 e.target.name의 name은 formData의 name이 아니라 key name인듯함.
@@ -23,30 +20,9 @@ const Register = ({ setAlert }) => {
 	// .name은 인풋 태그의 이름, .value가 인풋 태그의 값이다.
 	// []로 된건 computed property names
 	const onSubmit = async e => {
-		// 이때 이 password는 14열에서 받아와서 어디서든 사용할 수 있다.
 		if (password !== password2) {
-			// console.log('비밀번호가 일치하지 않습니다.');
 			setAlert('Passwords do not match', 'danger');
 		} else {
-			// console.log(formData); // 테스트
-			// //// WITHOUT REDUX
-			// // *** Req Example
-			// const newUser = { name, email, password };
-			// try {
-			// 	const config = {
-			// 		headers: {
-			// 			'Content-Type': 'application/json',
-			// 		},
-			// 	};
-			//     // Javascript 값을 json 문자열로 변환
-			// 	const body = JSON.stringify(newUser);
-			// 	   // Q) 배열인데 문자열로 어떻게 변환시키는거지? 배열 안의 데이터를 개별적으로 문자열로 바꿔주는건가? 그걸 받아와서 json object로 만들어 뿌려주나?
-			//     // post request to (경로, 데이터, 헤더 value를 담은 변수)
-			// 	const res = await axios.post('/api/users', body, config);
-			// 	console.log(res.data);
-			// } catch (err) {
-			// 	console.error(err.response.data);
-			// }
 			console.log('success');
 		}
 
