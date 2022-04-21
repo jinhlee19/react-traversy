@@ -36,10 +36,6 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(Alert);
 
-
-
-
-
 // //// *** VERSION 1.1 ***
 // // racfp 로 생성
 // import React from 'react';
