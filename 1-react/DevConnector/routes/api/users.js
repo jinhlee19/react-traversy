@@ -60,7 +60,7 @@ router.post(
 			const salt = await bcrypt.genSalt(10);
 			user.password = await bcrypt.hash(password, salt);
 			await user.save();
-			res.send('User Registered.');
+			
 
 			// Return jsonwebtoken
 			// payload - object - user:id
