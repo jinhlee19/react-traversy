@@ -26,9 +26,8 @@ const Register = ({ setAlert,register }) => {
 		} else {
 			register({name,email,password})
 		}
-
 		e.preventDefault();
-	};
+	}
 	return (
 		<Fragment>
 			<section className="container-sub">
@@ -46,8 +45,7 @@ const Register = ({ setAlert,register }) => {
 							placeholder="Email Address"
 							name="email"
 							value={email}
-							onChange={e => onChange(e)}
-					
+							onChange={e => onChange(e)}			
 						/>
 						<small className="form-text">
 							This site uses Gravatar so if you want a profile image, use a Gravatar email
@@ -58,10 +56,8 @@ const Register = ({ setAlert,register }) => {
 							type="password"
 							placeholder="Password"
 							name="password"
-					
 							value={password}
 							onChange={e => onChange(e)}
-					
 						/>
 					</div>
 					<div className="form-group">
@@ -69,10 +65,8 @@ const Register = ({ setAlert,register }) => {
 							type="password"
 							placeholder="Confirm Password"
 							name="password2"
-					
 							value={password2}
 							onChange={e => onChange(e)}
-					
 						/>
 					</div>
 					<input type="submit" className="btn btn-primary" value="Register" />
