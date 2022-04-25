@@ -1,4 +1,4 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL } from '../actions/types';
+import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR } from '../actions/types';
 
 const initialState = {
 	token: localStorage.getItem('token'),
@@ -13,6 +13,13 @@ const initialState = {
 export default function (state = initialState, action) {
 	const { type, payload } = action;
 	switch (type) {
+		case USER_LOADED:
+			return {
+				...state,
+				isAuthenticated: true,
+				loading: false,
+				user: payload,
+			};
 		case REGISTER_SUCCESS:
 			// 로컬 스토리지에서 가져오기
 			localStorage.setItem('token', payload.token);
@@ -22,16 +29,17 @@ export default function (state = initialState, action) {
 				isAuthenticated: true,
 				// res 받은 후, loading 상태는 false -> 완료
 				loading: false,
-			}
+			};
 		case REGISTER_FAIL:
+		case AUTH_ERROR:
 			localStorage.removeItem('token');
 			return {
-				...state,
+			...state,
 				token: null,
 				...payload,
 				isAuthenticated: false,
 				loading: false,
-			}
+			};
 		default:
 			return state;
 	}
