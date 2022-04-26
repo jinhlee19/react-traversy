@@ -1,7 +1,7 @@
 import axios from 'axios';
-import setAuthToken from '../utils/setAuthToken';
 import { setAlert } from './alert';
 import { REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR } from './types';
+import setAuthToken from '../utils/setAuthToken';
 
 // LOAD USER
 export const loadUser = () => async dispatch => {

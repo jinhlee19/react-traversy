@@ -11,8 +11,8 @@ import './App.css';
 import { Provider } from 'react-redux';
 import store from './store';
 import Alert from './components/layout/Alert';
-import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
 
 if (localStorage.token) {
 	setAuthToken(localStorage.token);
@@ -22,7 +22,6 @@ const App = () => {
 	useEffect(()=>{
 		store.dispatch(loadUser());
 	}, []);
-	//only let useEffect run once
 	return (
 	<Provider store={store}>
 		<Router>
