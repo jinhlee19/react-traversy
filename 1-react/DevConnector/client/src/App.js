@@ -5,6 +5,8 @@ import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
+import Dashboard from './components/dashboard/Dashboard';
+import PrivateRoute from './routing/PrivateRoute';
 import './App.css';
 
 // Redux
@@ -19,22 +21,24 @@ if (localStorage.token) {
 }
 
 const App = () => {
-	useEffect(()=>{
+	useEffect(() => {
 		store.dispatch(loadUser());
 	}, []);
 	return (
-	<Provider store={store}>
-		<Router>
-			<Fragment>
-				<Navbar />
-				<Alert />
-				<Routes>
-					<Route path="/" element={<Landing />} />
-					<Route path="/register" element={<Register />} />
-					<Route path="/login" element={<Login />} />
-				</Routes>
-			</Fragment>
-		</Router>
-	</Provider>
-)};
+		<Provider store={store}>
+			<Router>
+				<Fragment>
+					<Navbar />
+					<Alert />
+					<Routes>
+						<Route path="/" element={<Landing />} />
+						<Route path="/register" element={<Register />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="dashboard" element={<PrivateRoute component={Dashboard} />} />
+					</Routes>
+				</Fragment>
+			</Router>
+		</Provider>
+	);
+};
 export default App;
