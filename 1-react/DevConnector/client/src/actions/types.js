@@ -8,4 +8,7 @@ export const LOGIN_SUCCESS ='LOGIN_SUCCESS';
 export const LOGIN_FAIL ='LOGIN_FAIL';
 export const LOGOUT ='LOGOUT';
 
-// TODO : 아직 이부분도 왜 이렇게 분리해야하는 지 어떻게 뽑아 쓰는건지 이해가 가지 않음.
+export const GET_PROFILE ='GET_PROFILE';
+export const PROFILE_ERROR ='PROFILE_ERROR';
+
+// 액션에 이름붙이는 건가봄. 그냥 인덱스처럼 확인하기 편하게...
