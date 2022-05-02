@@ -2,9 +2,12 @@ import { GET_PROFILE, PROFILE_ERROR } from '../actions/types';
 
 const initialState = {
 	profile: null,
+	// 
 	profiles: [],
+	// profile listing page
 	repos: [],
 	loading: true,
+	// 기본은 true, request 완료 시 -> false
 	error: {},
 };
 
