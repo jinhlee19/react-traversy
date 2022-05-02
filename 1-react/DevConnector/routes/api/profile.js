@@ -19,6 +19,7 @@ router.get('/me', auth, async (req, res) => {
 	try {
 		const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);
 		// Profile 모델의 user 필드의 ObjectId와 연결.
+		console.log('hello');
 		if (!profile) {
 			return res.status(400).json({ msg: 'There is no profile for this user' });
 		}
@@ -27,6 +28,7 @@ router.get('/me', auth, async (req, res) => {
 		console.error(err.message);
 		res.status(500).send('Server Error');
 	}
+	
 });
 
 // @route   Post api/profile
@@ -129,7 +131,7 @@ router.get('/', async (req, res) => {
 router.get('/user/:user_id', auth, async (req, res) => {
 	try {
 		const profile = await Profile.findOne({
-			user: req.params.user_id,
+			user: req.params.user.id,
 		}).populate('user', ['name', 'avatar']);
 		if (!profile) {
 			return res.status(400).json({ msg: 'There is no profile for this user' });
