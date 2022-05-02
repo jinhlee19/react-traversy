@@ -13,6 +13,7 @@ const Dashboard = ({ getCurrentProfile, auth:{user} , profile: {profile, loading
 		<p className='lead'>
 			<i className='fas fa-user'></i> Welcome {user && user.name }
 		</p>
+		{profile !== null? <Fragment></Fragment>: <Fragment>has</Fragment>}
 	</div>
 };
 
