@@ -6,7 +6,7 @@ const request = require('request');
 const config = require('config');
 
 // express validator
-const { check, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 
 const Profile = require('../../models/Profile');
 const User = require('../../models/Users');
@@ -37,10 +37,7 @@ router.get('/me', auth, async (req, res) => {
 // router.post('/', (req,res)=> {})
 router.post(
 	'/',
-	[
-		auth,
-		[check('status', 'Status is required').not().isEmpty(), check('skills', 'Skills is required').not().isEmpty()],
-	],
+	[auth, body('status', 'Status is required').not().isEmpty(), body('skills', 'Skills is required').not().isEmpty()],
 	async (req, res) => {
 		const errors = validationResult(req);
 		// validation not pass
@@ -84,17 +81,26 @@ router.post(
 		if (linkedin) profileFields.social.linkedin = linkedin;
 		if (instagram) profileFields.social.instagram = instagram;
 		// * mongoose 메서드 사용시 항상 앞에 await 사용
+		// try {
+		// 	let profile = await Profile.findOne({ user: req.user.id });
+		// 	if (profile) {
+		// 		// Update
+		// 		profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true });
+		// 		return res.json(profile);
+		// 	}
+		// 	// Create
+		// 	profile = new Profile(profileFields);
+		// 	await profile.save();
+		// 	res.json(profile);
+		// }
 		try {
-			let profile = await Profile.findOne({ user: req.user.id });
-			if (profile) {
-				// Update
-				profile = await Profile.findOneAndUpdate({ user: req.user.id }, { $set: profileFields }, { new: true });
-				return res.json(profile);
-			}
-			// Create
-			profile = new Profile(profileFields);
-			await profile.save();
-			res.json(profile);
+			// Using upsert option (creates new doc if no match is found):
+			let profile = await Profile.findOneAndUpdate(
+				{ user: req.user.id },
+				{ $set: profileFields },
+				{ new: true, upsert: true, setDefaultsOnInsert: true }
+			);
+			return res.json(profile);
 		} catch (err) {
 			console.error(err.message);
 			res.status(500).send('server error');
@@ -167,9 +173,9 @@ router.put(
 	[
 		auth,
 		[
-			check('title', 'Title is required').not().isEmpty(),
-			check('company', 'Company is required').not().isEmpty(),
-			check('from', 'From date is required').not().isEmpty(),
+			body('title', 'Title is required').not().isEmpty(),
+			body('company', 'Company is required').not().isEmpty(),
+			body('from', 'From date is required').not().isEmpty(),
 		],
 	],
 	async (req, res) => {
@@ -220,10 +226,10 @@ router.put(
 	[
 		auth,
 		[
-			check('school', 'School is required').not().isEmpty(),
-			check('degree', 'degree is required').not().isEmpty(),
-			check('major', 'major is required').not().isEmpty(),
-			check('from', 'From date is required').not().isEmpty(),
+			body('school', 'School is required').not().isEmpty(),
+			body('degree', 'degree is required').not().isEmpty(),
+			body('major', 'major is required').not().isEmpty(),
+			body('from', 'From date is required').not().isEmpty(),
 		],
 	],
 	async (req, res) => {
