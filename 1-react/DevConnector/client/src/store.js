@@ -32,5 +32,4 @@ let currentState = {
 
 export default store;
 
-
 //https://github.com/bradtraversy/devconnector_2.0/tree/master#redux-subscription-to-manage-local-storage
