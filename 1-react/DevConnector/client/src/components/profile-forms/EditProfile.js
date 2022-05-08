@@ -22,7 +22,7 @@ const initialState = {
 	instagram: '',
 };
 
-const CreateProfile = ({ profile: { profile, loading }, createProfile, getCurrentProfile }) => {
+const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentProfile }) => {
 	const [displaySocialInputs, toggleSocialInputs] = useState(false);
 	const navigate = useNavigate();
 
@@ -198,7 +198,7 @@ const CreateProfile = ({ profile: { profile, loading }, createProfile, getCurren
 
 // STEP 2
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
 	createProfile: PropTypes.func.isRequired,
 	getCurrentProfile: PropTypes.func.isRequired,
 	profile: PropTypes.object.isRequired,
@@ -209,4 +209,4 @@ const mapStateToProps = state => ({
 });
 
 // export default connect(null, { createProfile })(useNavigate(CreateProfile));
-export default connect(mapStateToProps, { createProfile, getCurrentProfile })(CreateProfile);
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(EditProfile);
