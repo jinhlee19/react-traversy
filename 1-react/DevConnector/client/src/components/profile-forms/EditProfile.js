@@ -1,10 +1,12 @@
-import React, { Fragment, useState } from 'react';
+// STEP 4
+import React, { Fragment, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createProfile } from '../../actions/profile';
-
-const CreateProfile = ({ createProfile }) => {
+// STEP 1
+import { createProfile, getCurrentProfile } from '../../actions/profile';
+// STEP 3
+const CreateProfile = ({ profile: {profile,loading}, createProfile, getCurrentProfile }) => {
 	const navigate = useNavigate();
 
 	const [formData, setFormData] = useState({
@@ -161,7 +163,17 @@ const CreateProfile = ({ createProfile }) => {
 
 CreateProfile.propTypes = {
 	createProfile: PropTypes.func.isRequired,
+    getCurrentProfile: PropTypes.func.isRequired,
+    profile: PropTypes.object.isRequired
+
 };
 
+// STEP 2 
+
+
+const mapStateToProps = state = ({
+    profile: state.profile
+});
+
 // export default connect(null, { createProfile })(useNavigate(CreateProfile));
-export default connect(null, { createProfile })(CreateProfile);
+export default connect(mapStateToProps, { createProfile, getCurrentProfile })(CreateProfile);
