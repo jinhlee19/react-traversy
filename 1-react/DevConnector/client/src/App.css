@@ -149,8 +149,10 @@ img {
 }
 
 .alert {
-	padding: 0.8rem;
-	margin: 1rem 0;
+	position: absolute;
+	top: 12rem;
+	/* padding: 0.8rem;
+	margin: 1rem 0; */
 	opacity: 0.9;
 	background: var(--light-color);
 	color: #333;
