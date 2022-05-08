@@ -1,6 +1,6 @@
 // STEP 4
 import React, { Fragment, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // STEP 1
@@ -188,9 +188,9 @@ const EditProfile = ({ profile: { profile, loading }, createProfile, getCurrentP
 					</Fragment>
 				)}
 				<input type="submit" className="btn btn-primary my-1" onChange={e => onChange(e)} />
-				<a className="btn btn-light my-1" href="dashboard.html">
+				<Link className="btn btn-light my-1" to="/dashboard">
 					Go Back
-				</a>
+				</Link>
 			</form>
 		</div>
 	);
