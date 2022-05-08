@@ -1,10 +1,12 @@
 import React, { Fragment, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createProfile } from '../../actions/profile';
 
-const CreateProfile = ({ createProfile, history }) => {
+const CreateProfile = ({ createProfile }) => {
+	const navigate = useNavigate();
+
 	const [formData, setFormData] = useState({
 		company: '',
 		website: '',
@@ -40,10 +42,9 @@ const CreateProfile = ({ createProfile, history }) => {
 	const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
     const onSubmit = e => {
         createProfile(formData, navigate);
-
         e.preventDefault();
     }
-    const navigate = useNavigate();
+    
 	return (
 		<div className="sub-pages">
 			<h1 className="large text-primary">Create Your Profile</h1>
@@ -162,4 +163,5 @@ CreateProfile.propTypes = {
 	createProfile: PropTypes.func.isRequired,
 };
 
-export default connect(null, { createProfile })(useNavigate(CreateProfile));
+// export default connect(null, { createProfile })(useNavigate(CreateProfile));
+export default connect(null, { createProfile })(CreateProfile);
