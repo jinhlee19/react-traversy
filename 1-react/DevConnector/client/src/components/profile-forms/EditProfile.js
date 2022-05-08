@@ -6,23 +6,60 @@ import { connect } from 'react-redux';
 // STEP 1
 import { createProfile, getCurrentProfile } from '../../actions/profile';
 // STEP 3
-const CreateProfile = ({ profile: {profile,loading}, createProfile, getCurrentProfile }) => {
+
+const initialState = {
+	company: '',
+	website: '',
+	location: '',
+	status: '',
+	skills: '',
+	githubusername: '',
+	bio: '',
+	twitter: '',
+	facebook: '',
+	linkedin: '',
+	youtube: '',
+	instagram: '',
+};
+
+const CreateProfile = ({ profile: { profile, loading }, createProfile, getCurrentProfile }) => {
+	const [displaySocialInputs, toggleSocialInputs] = useState(false);
 	const navigate = useNavigate();
 
-	const [formData, setFormData] = useState({
-		company: '',
-		website: '',
-		location: '',
-		status: '',
-		skills: '',
-		githubusername: '',
-		bio: '',
-		twitter: '',
-		facebook: '',
-		linkedin: '',
-		youtube: '',
-		instagram: '',
-	});
+	const [formData, setFormData] = useState(initialState);
+
+	useEffect(() => {
+		// if there is no profile, attempt to fetch one
+		if (!profile) getCurrentProfile();
+
+		// if we finished loading and we do have a profile
+		// then build our profileData
+		if (!loading && profile) {
+			const profileData = { ...initialState };
+			for (const key in profile) {
+				if (key in profileData) profileData[key] = profile[key];
+			}
+			for (const key in profile.social) {
+				if (key in profileData) profileData[key] = profile.social[key];
+			}
+			// the skills may be an array from our API response
+			if (Array.isArray(profileData.skills)) profileData.skills = profileData.skills.join(', ');
+			// set local state with the profileData
+			setFormData(profileData);
+		}
+	}, [loading, getCurrentProfile, profile]);
+
+	// STEP 5: 참고용
+	// useEffect(() => {
+	// 	getCurrentProfile();
+	// 	setFormData({
+	// 		company: loading || !profile.company ? '' : profile.company,
+	//         website: loading || !profile.website ? '' : profile.website,
+	//         location: loading || !profile.location ? '' : profile.location,
+	//         status: loading || !profile.status ? '' : profile.status,
+	//         ...
+	// 	});
+	// }, [loading]);
 
 	const {
 		company,
@@ -38,8 +75,6 @@ const CreateProfile = ({ profile: {profile,loading}, createProfile, getCurrentPr
 		youtube,
 		instagram,
 	} = formData;
-
-	const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
 	const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 	const onSubmit = e => {
@@ -161,18 +196,16 @@ const CreateProfile = ({ profile: {profile,loading}, createProfile, getCurrentPr
 	);
 };
 
+// STEP 2
+
 CreateProfile.propTypes = {
 	createProfile: PropTypes.func.isRequired,
-    getCurrentProfile: PropTypes.func.isRequired,
-    profile: PropTypes.object.isRequired
-
+	getCurrentProfile: PropTypes.func.isRequired,
+	profile: PropTypes.object.isRequired,
 };
 
-// STEP 2 
-
-
-const mapStateToProps = state = ({
-    profile: state.profile
+const mapStateToProps = state => ({
+	profile: state.profile,
 });
 
 // export default connect(null, { createProfile })(useNavigate(CreateProfile));
