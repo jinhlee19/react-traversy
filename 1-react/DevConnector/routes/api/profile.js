@@ -19,7 +19,6 @@ router.get('/me', auth, async (req, res) => {
 	try {
 		const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);
 		// Profile 모델의 user 필드의 ObjectId와 연결.
-		console.log('hello');
 		if (!profile) {
 			return res.status(400).json({ msg: 'There is no profile for this user' });
 		}
@@ -28,7 +27,6 @@ router.get('/me', auth, async (req, res) => {
 		console.error(err.message);
 		res.status(500).send('Server Error');
 	}
-	
 });
 
 // @route   Post api/profile
@@ -37,6 +35,7 @@ router.get('/me', auth, async (req, res) => {
 
 // need to use Auth and devalidation Middle ware
 // router.post('/', (req,res)=> {})
+
 router.post(
 	'/',
 	[auth, body('status', 'Status is required').not().isEmpty(), body('skills', 'Skills is required').not().isEmpty()],
@@ -46,6 +45,7 @@ router.post(
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array() });
 		}
+		
 		//validation passes
 		const {
 			company,
