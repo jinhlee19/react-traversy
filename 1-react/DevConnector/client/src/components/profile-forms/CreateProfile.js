@@ -2,7 +2,7 @@ import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const CreateProfile = () => {
+const CreateProfile = props => {
 	const [formData, setFormData] = useState({
 		company: '',
 		website: '',
@@ -34,7 +34,7 @@ const CreateProfile = () => {
 	} = formData;
 
 	return (
-		<Fragment>
+		<div className='sub-pages'>
 			<h1 className="large text-primary">Create Your Profile</h1>
 			<p className="lead">
 				<i className="fas fa-user"></i> Let's get some information to make your profile stand out
@@ -116,7 +116,7 @@ const CreateProfile = () => {
 					Go Back
 				</a>
 			</form>
-		</Fragment>
+		</div>
 	);
 };
 
