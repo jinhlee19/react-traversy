@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { setAlert } from './alert';
 
-import { CLEAR_PROFILE, ACCOUNT_DELETE, GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from './types';
+import { CLEAR_PROFILE, ACCOUNT_DELETED, GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from './types';
 
 // Get Current User Profile
 
@@ -160,9 +160,10 @@ export const deleteEducation = id => async dispatch => {
 export const deleteAccount = id => async dispatch => {
 	if (window.confirm('Are you sure? This can NOT be undone!')) {
 		try {
-			const res = await axios.delete('api/profile');
+			await axios.delete('api/profile');
+			
 			dispatch({type: CLEAR_PROFILE});
-			dispatch({type: ACCOUNT_DELETE});
+			dispatch({type: ACCOUNT_DELETED});
 			dispatch(setAlert('Your account has been permanantly deleted.'));
 		} catch (err) {
 			dispatch({
