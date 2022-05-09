@@ -230,7 +230,7 @@ router.put(
 		[
 			body('school', 'School is required').not().isEmpty(),
 			body('degree', 'degree is required').not().isEmpty(),
-			body('major', 'major is required').not().isEmpty(),
+			body('fieldofstudy', 'field of study is required').not().isEmpty(),
 			body('from', 'From date is required').not().isEmpty(),
 		],
 	],
@@ -239,8 +239,8 @@ router.put(
 		if (!error.isEmpty()) {
 			return res.status(400).json({ errors: error.array() });
 		}
-		const { school, degree, major, from, to, current, description } = req.body;
-		const newEdu = { school, degree, major, from, to, current, description };
+		const { school, degree, fieldofstudy, from, to, current, description } = req.body;
+		const newEdu = { school, degree, fieldofstudy, from, to, current, description };
 		try {
 			const profile = await Profile.findOne({ user: req.user.id });
 			profile.education.unshift(newEdu);
