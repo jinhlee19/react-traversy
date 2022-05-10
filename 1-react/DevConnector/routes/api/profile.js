@@ -46,7 +46,7 @@ router.post(
 		if (!errors.isEmpty()) {
 			return res.status(400).json({ errors: errors.array() });
 		}
-		
+
 		//validation passes
 		const {
 			company,
@@ -129,10 +129,10 @@ router.get('/', async (req, res) => {
 // @desc    Get profiles by user ID
 // @access  Public
 
-router.get('/user/:user_id', auth, async (req, res) => {
+router.get('/user/:user_id', async (req, res) => {
 	try {
 		const profile = await Profile.findOne({
-			user: req.params.user.id,
+			user: req.params.user_id,
 		}).populate('user', ['name', 'avatar']);
 		if (!profile) {
 			return res.status(400).json({ msg: 'There is no profile for this user' });
@@ -154,7 +154,7 @@ router.get('/user/:user_id', auth, async (req, res) => {
 router.delete('/', auth, async (req, res) => {
 	try {
 		// Remove Users posts ******** 꼭 지울 필요는 없음. 지우기 좀 애매한데? 기록 남겨야하나..?
-		await Post.deleteMany({user:req.uesr.id});
+		await Post.deleteMany({ user: req.uesr.id });
 
 		// Remove Profile
 		await Profile.findOneAndRemove({ user: req.user.id });
