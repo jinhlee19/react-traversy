@@ -153,7 +153,7 @@ router.get('/user/:user_id', auth, async (req, res) => {
 
 router.delete('/', auth, async (req, res) => {
 	try {
-		// Remove Users posts
+		// Remove Users posts ******** 꼭 지울 필요는 없음. 지우기 좀 애매한데? 기록 남겨야하나..?
 		await Post.deleteMany({user:req.uesr.id});
 
 		// Remove Profile

@@ -1,11 +1,17 @@
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { setAlert } from './alert';
 
-import { CLEAR_PROFILE, ACCOUNT_DELETED, GET_PROFILE, PROFILE_ERROR, UPDATE_PROFILE } from './types';
+import {
+	CLEAR_PROFILE,
+	ACCOUNT_DELETED,
+	GET_PROFILE,
+	GET_PROFILES,
+	PROFILE_ERROR,
+	UPDATE_PROFILE,
+	GET_REPOS,
+} from './types';
 
 // Get Current User Profile
-
 export const getCurrentProfile = () => async dispatch => {
 	try {
 		const res = await axios.get('/api/profile/me');
@@ -16,7 +22,66 @@ export const getCurrentProfile = () => async dispatch => {
 	} catch (err) {
 		dispatch({
 			type: PROFILE_ERROR,
-			// payload: { msg: err.response.data.msg, status: err.response.status }
+			payload: {
+				msg: err.response.statusText,
+				status: err.response.status,
+			},
+		});
+	}
+};
+
+// Get All Profiles
+export const getProfiles = () => async dispatch => {
+	// 이전 사용자 프로필 보여지는 상황을 예방한다.
+	dispatch({ type: CLEAR_PROFILE });
+
+	try {
+		const res = await axios.get('/api/profile');
+		dispatch({
+			type: GET_PROFILES,
+			payload: res.data,
+		});
+	} catch (err) {
+		dispatch({
+			type: PROFILE_ERROR,
+			payload: {
+				msg: err.response.statusText,
+				status: err.response.status,
+			},
+		});
+	}
+};
+
+// Get Profile by ID
+export const getProfileById = userId => async dispatch => {
+	try {
+		const res = await axios.get(`/api/profile/user/${userId}`);
+		dispatch({
+			type: GET_PROFILE,
+			payload: res.data,
+		});
+	} catch (err) {
+		dispatch({
+			type: PROFILE_ERROR,
+			payload: {
+				msg: err.response.statusText,
+				status: err.response.status,
+			},
+		});
+	}
+};
+
+// Get Github Repos
+export const getGithubRepos = username => async dispatch => {
+	try {
+		const res = await axios.get(`/api/profile/github/${username}`);
+		dispatch({
+			type: GET_REPOS,
+			payload: res.data,
+		});
+	} catch (err) {
+		dispatch({
+			type: PROFILE_ERROR,
 			payload: {
 				msg: err.response.statusText,
 				status: err.response.status,
@@ -161,9 +226,9 @@ export const deleteAccount = id => async dispatch => {
 	if (window.confirm('Are you sure? This can NOT be undone!')) {
 		try {
 			await axios.delete('api/profile');
-			
-			dispatch({type: CLEAR_PROFILE});
-			dispatch({type: ACCOUNT_DELETED});
+
+			dispatch({ type: CLEAR_PROFILE });
+			dispatch({ type: ACCOUNT_DELETED });
 			dispatch(setAlert('Your account has been permanantly deleted.'));
 		} catch (err) {
 			dispatch({
