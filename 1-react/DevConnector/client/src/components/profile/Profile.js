@@ -2,29 +2,17 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
-import { Link, useParams } from 'react-router-dom';
 import { getProfileById } from '../../actions/profile';
 
 const Profile = ({ getProfileById, profile: { profile, loading }, auth, match }) => {
-	
-	// 수업버전
-		useEffect(()=>{
-			getProfileById(match.params.id);
-		},[getProfileById])
-
-	// 깃헙 버전
-	// const { id } = useParams();
-	// useEffect(() => {
-	// 	getProfileById(id);
-	// }, [getProfileById, id]);
+	useEffect(() => {
+		getProfileById(match.params.id);
+	}, []);
 
 	return (
 		<div className="container">
 			Profile
 			<Spinner />
-			<Link to="/edit-profile" className="btn btn-dark">
-				Edit Profile
-			</Link>
 		</div>
 	);
 };
