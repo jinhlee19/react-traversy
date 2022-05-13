@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import { getProfileById } from '../../actions/profile';
 import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
 	const { id } = useParams();
@@ -13,8 +14,20 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
 
 	return (
 		<div className="container">
-			Profile
-			<Spinner />
+			{profile === null || loading ? (
+				<Spinner />
+			) : (
+        <Fragment>
+          <Link to="/profiles" className="btn btn-light">
+            Back To Profiles
+          </Link>
+          {auth.isAuthenticated &&
+            auth.loading === false &&
+            auth.user._id === profile.user._id && (
+              <Link to="/edit-profile" className="btn btn-dark">
+                Edit Profile
+              </Link>
+            )}</Fragment>)}
 		</div>
 	);
 };
@@ -33,6 +46,8 @@ const mapStateToProps = state => ({
 
 // connect = prop을 담아옴. 최소 프로필 데이터 연결, 그후 getProfileById 부분은 action 부분
 export default connect(mapStateToProps, { getProfileById })(Profile);
+
+//// Backup
 
 // import React, { useEffect } from 'react';
 // import PropTypes from 'prop-types';
