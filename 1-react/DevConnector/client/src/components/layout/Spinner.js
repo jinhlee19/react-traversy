@@ -27,7 +27,7 @@ export default Spinner;
 // 				className="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
 // 				alt="loading..."
 // 			>
-// 				<svg viewBox="22 22 44 44" class="MuiCircularProgress-svg">
+// 				<svg viewBox="22 22 44 44" className="MuiCircularProgress-svg">
 // 					{' '}
 // 					<circle
 // 						cx="44"
@@ -35,7 +35,7 @@ export default Spinner;
 // 						r="20.2"
 // 						fill="none"
 // 						stroke-width="3.6"
-// 						class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+// 						className="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
 // 					></circle>
 // 				</svg>
 // 			</div>
