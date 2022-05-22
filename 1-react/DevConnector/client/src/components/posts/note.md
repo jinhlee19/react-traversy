@@ -108,6 +108,6 @@
      });
 
      // Getting post state from mapStateToProps
-     // connect = prop을 담아옴. 최소 프로필 데이터 연결, 그후 getPosts 부분은 action 부분
+     // connect = post의 상태값 받아와서 현재 상태의 post들을 Prop에 전달 -> 그후 getPosts 부분은 action 부분
      export default connect(mapStateToProps, { getPosts })(Posts);
      ```
