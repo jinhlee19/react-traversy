@@ -25,3 +25,4 @@ const UserSchema = new mongoose.Schema({
 });
 
 module.exports = User = mongoose.model('user', UserSchema);
+// => 변수명 : User, model이름: user, 스키마 이름: UserScheam

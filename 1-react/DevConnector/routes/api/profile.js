@@ -190,7 +190,7 @@ router.put(
 		const { title, company, location, from, to, current, description } = req.body;
 		const newExp = { title, company, location, from, to, current, description };
 		try {
-			const profile = await Profile.findOne({ user: req.user.id });
+			const profile = await Profile.findOneAndUpdate({ user: req.user.id });
 			// 배열 맨 앞에 추가
 			profile.experience.unshift(newExp);
 			await profile.save();

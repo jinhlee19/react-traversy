@@ -13,7 +13,8 @@ import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import PrivateRoute from './routing/PrivateRoute';
-
+import Posts from './components/posts/Posts';
+import Test from './components/layout/Test';
 import './App.css';
 
 // Redux
@@ -42,13 +43,14 @@ const App = () => {
 						<Route path="/register" element={<Register />} />
 						<Route path="/login" element={<Login />} />
 						<Route path="/profiles" element={<Profiles />} />
-						<Route path='/profile/:id' element={<Profile />} />
+						<Route path="/profile/:id" element={<Profile />} />
 						<Route path="/dashboard" element={<PrivateRoute component={Dashboard} />} />
 						<Route path="/create-profile" element={<PrivateRoute component={CreateProfile} />} />
 						<Route path="/edit-profile" element={<PrivateRoute component={EditProfile} />} />
 						<Route path="/add-experience" element={<PrivateRoute component={AddExperience} />} />
 						<Route path="/add-education" element={<PrivateRoute component={AddEducation} />} />
-
+						<Route path="/posts" element={<PrivateRoute component={Posts} />} />
+						<Route path="/test" element={<Test />} />
 					</Routes>
 				</Fragment>
 			</Router>
