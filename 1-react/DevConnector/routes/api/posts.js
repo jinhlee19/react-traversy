@@ -10,7 +10,7 @@ const post = require('../../models/Post');
 const profile = require('../../models/Profile');
 const user = require('../../models/Users');
 const Post = require('../../models/Post');
-
+const checkObjectId = require('../../middleware/checkObjectId');
 //// ADD POST ROUTE
 // @route   Post api/posts
 // @desc    Test Route
@@ -110,7 +110,7 @@ router.delete('/:id', auth, async (req, res) => {
 // @desc    Like a Post
 // @access  Private
 
-router.put('/like/:id', auth, async (req, res) => {
+router.put('/like/:id', auth, checkObjectId('id'), async (req, res) => {
 	try {
 		const post = await Post.findById(req.params.id);
 		// Check if the Post has already been liked.
