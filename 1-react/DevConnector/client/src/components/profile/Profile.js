@@ -32,7 +32,7 @@ const Profile = ({ getProfileById, profile: { profile, loading }, auth }) => {
 							Edit Profile
 						</Link>
 					)}
-					<div class="profile-grid my-1">
+					<div className="profile-grid my-1">
 						<ProfileTop profile={profile} />
 						<ProfileAbout profile={profile} />
 						<div className="profile-exp bg-white p-2">
@@ -82,3 +82,11 @@ const mapStateToProps = state => ({
 
 // connect = prop을 담아옴. 최소 프로필 데이터 연결, 그후 getProfileById 부분은 action 부분
 export default connect(mapStateToProps, { getProfileById })(Profile);
+
+/*
+질문: 
+78열 - mapStateToProps의 state는 어디서 나오는 건가. 인자로 뜬금없이 받아서 .profile과 .auth를 연결하는 원리?
+14열 - profile을 받아와서 profile안의 profile과 loading을 각각 뿌려주는데 어디서 온건지 
+---> reducer 에서 받아오는 값. profile은 payload
+
+*/

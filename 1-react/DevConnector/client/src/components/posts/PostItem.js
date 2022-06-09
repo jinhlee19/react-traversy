@@ -8,7 +8,7 @@ import { addLike, removeLike } from '../../actions/post';
 const PostItem = ({ auth, post: { _id, text, name, avatar, user, likes, comments, date }, addLike, removeLike }) => (
 	<div className="post bg-white p-1 my-1">
 		<div>
-			<Link to="profile.html">
+			<Link to={`/profile/${_id}`}>
 				<img className="round-img" src={avatar} alt="" />
 				<h4>{name}</h4>
 			</Link>
@@ -26,7 +26,7 @@ const PostItem = ({ auth, post: { _id, text, name, avatar, user, likes, comments
 			<button type="button" className="btn btn-light" onClick={e => removeLike(_id)}>
 				<i className="fas fa-thumbs-down"></i>
 			</button>
-			<Link to="post.html" className="btn btn-primary">
+			<Link to={`/post/${_id}`} className="btn btn-primary">
 				Discussion {comments.length > 0 && <span className="comment-count">{comments.length}</span>}
 			</Link>
 			{!auth.loading && user === auth.user._id && (
