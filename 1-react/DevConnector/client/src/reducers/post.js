@@ -34,4 +34,4 @@ export default function (state = initialState, action) {
 			return state;
 	}
 }
-// post의 likes가 변경되면 post 전체를 업데이트해주는 듯. 근데 왜 post id와 payload id가 같은 값일때가 기준이 되는지 이해가 안되는 부분.
+// post의 likes가 변경되면 post 전체를 업데이트해주는 듯. 근데 왜 post id와 payload id가 같은 값일때가 기준이 되는지 이해가 안되는 부분. payload.id는 post id인가? auth id가 아닌 다른 아이디가 아닌 payload.id가?
