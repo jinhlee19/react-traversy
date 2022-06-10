@@ -69,3 +69,11 @@ const mapStateToProps = state => ({
 
 // Delete버튼을 유저에게만 적용하기 위해서 auth를 불러옴.
 export default connect(mapStateToProps, { addLike, removeLike, deletePost })(PostItem);
+
+/*
+TROUBLE SHOOTING
+1. avatar 입력 안되는 문제 : avatar 적용 해제했다가 다시 주석해제 하니까 제대로 적용됨. 어이없네
+2. MOMENT 는 react-moment로 안쓰고 moment으로 잘못써서 오류 났었음. 
+모두 해결 끗.
+
+*/
