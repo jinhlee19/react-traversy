@@ -9,7 +9,7 @@ const CommentItem = ({ postId, auth, deleteComment, comment: { _id, text, name, 
 	<div className="post bg-white p-1 my-1">
 		<div>
 			<Link to={`/profile/${user}`}>
-				<img className="round-img" src={avatar} alt="" />
+				{/* <img className="round-img" src={avatar} alt="" /> */}
 				<h4>{name}</h4>
 			</Link>
 		</div>

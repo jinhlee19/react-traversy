@@ -168,7 +168,7 @@ router.post('/comment/:id', [auth], [check('text', 'Text is required').not().isE
 		const newComment = {
 			text: req.body.text,
 			name: user.name,
-			// avatar: user.avatar,  // Occurs Server Error
+			avatar: user.avatar, // Occurs Server Error
 			user: req.user.id,
 		};
 		post.comments.unshift(newComment);

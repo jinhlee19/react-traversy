@@ -55,9 +55,13 @@ export default function (state = initialState, action) {
 		case REMOVE_COMMENT:
 			return {
 				...state,
-				comments: state.post.comments.filter(comment => comment._id !== payload),
+				post: {
+					...state.post,
+					comments: state.post.comments.filter(comment => comment._id !== payload),
+				},
 				loading: false,
 			};
+		// 이부분 다시보기 ***
 		case POST_ERROR:
 			return {
 				...state,
